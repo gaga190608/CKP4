@@ -49,7 +49,7 @@ projeto/
 
 ## Como reproduzir
 
-### 1. Notebook
+### Notebook
 
 O notebook foi desenvolvido no Google Colab e lê a base bruta da ANAC a partir do Google Drive. Para rodar:
 
@@ -58,9 +58,9 @@ O notebook foi desenvolvido no Google Colab e lê a base bruta da ANAC a partir 
 2. Abra `notebook.ipynb` no Colab e execute todas as células, em ordem, do início ao fim.
 3. O notebook salva `base_tratada.csv` e `modelo.pkl` em pastas `dados/` e `modelo/` **ao lado do arquivo
    bruto no seu Google Drive** (não neste repositório). Baixe os dois arquivos gerados e copie-os para as
-   pastas `dados/` e `modelo/` deste repositório antes de rodar o app localmente ou publicar no Streamlit.
+   pastas `dados/` e `modelo/` deste repositório antes de rodar o app localmente.
 
-### 2. Aplicação Streamlit
+### Aplicação Streamlit
 
 Localmente:
 
@@ -77,24 +77,6 @@ docker run -p 8501:8501 consumo-combustivel
 ```
 
 A aplicação abre em `http://localhost:8501`.
-
-### 3. Publicação (Streamlit Community Cloud)
-
-1. Suba este repositório para o GitHub (veja seção abaixo).
-2. Em https://share.streamlit.io, conecte o repositório e aponte `app.py` como arquivo principal.
-3. Garanta que `dados/base_tratada.csv` e `modelo/modelo.pkl` estejam versionados no repositório (ou gerados
-   por um passo de build), já que o app depende deles no carregamento.
-
-## Como subir para o GitHub
-
-```bash
-git init
-git add .
-git commit -m "Checkpoint 4: regressão linear e polinomial - consumo de combustível ANAC"
-git branch -M main
-git remote add origin https://github.com/<seu-usuario>/<nome-do-repo>.git
-git push -u origin main
-```
 
 ## Principais limitações conhecidas
 
