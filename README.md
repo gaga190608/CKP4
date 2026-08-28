@@ -36,47 +36,44 @@ Fonte: https://www.anac.gov.br/acesso-a-informacao/dados-abertos/areas-de-atuaca
 ```
 projeto/
 ├── app.py                 # Aplicação Streamlit
-├── notebook.ipynb         # Notebook com a análise completa (EDA, modelagem, diagnóstico)
-├── requirements.txt       # Dependências
-├── Dockerfile              # Empacotamento para execução em container
+├── notebook.ipynb         # Análise completa, treinamento e exportação dos artefatos
+├── requirements.txt       # Dependências da aplicação
 ├── README.md
 ├── dados/
-│   └── base_tratada.csv   # Base tratada, gerada pelo notebook (Seção 5)
+│   └── base_tratada.csv   # Base tratada gerada pelo notebook
 └── modelo/
-    ├── modelo.pkl          # Modelo final + metadados, gerado pelo notebook (Seção 12)
-    └── metricas.json
+    ├── modelo.pkl         # Modelo final e metadados
+    └── metricas.json      # Métricas de avaliação
 ```
 
 ## Como reproduzir
 
-### Notebook
+### Treinamento no Google Colab
 
-O notebook foi desenvolvido no Google Colab e lê a base bruta da ANAC a partir do Google Drive. Para rodar:
+O notebook foi desenvolvido no Google Colab e lê a base bruta da ANAC a partir do Google Drive:
 
-1. Baixe a base bruta da ANAC no link acima e faça upload no seu Google Drive (ajuste `CAMINHO_BASE` na
-   Seção 4 se necessário).
-2. Abra `notebook.ipynb` no Colab e execute todas as células, em ordem, do início ao fim.
-3. O notebook salva `base_tratada.csv` e `modelo.pkl` em pastas `dados/` e `modelo/` **ao lado do arquivo
-   bruto no seu Google Drive** (não neste repositório). Baixe os dois arquivos gerados e copie-os para as
-   pastas `dados/` e `modelo/` deste repositório antes de rodar o app localmente.
+1. Baixe a base bruta da ANAC pelo link informado acima.
+2. Envie o arquivo ao Google Drive como `Colab Notebooks/Dados_Estatisticos.csv`.
+3. Abra `notebook.ipynb` no Colab e execute todas as células em ordem.
+4. Copie os artefatos gerados para este repositório:
+   - `dados/base_tratada.csv`
+   - `modelo/modelo.pkl`
+   - `modelo/metricas.json`
 
 ### Aplicação Streamlit
 
-Localmente:
+Para executar localmente:
 
 ```bash
 pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Com Docker:
-
-```bash
-docker build -t consumo-combustivel .
-docker run -p 8501:8501 consumo-combustivel
-```
-
 A aplicação abre em `http://localhost:8501`.
+
+A versão publicada é executada pelo **Streamlit Community Cloud**, diretamente a partir da branch `main` e do arquivo `app.py`.
+
+> **Docker não é necessário neste projeto.** O treinamento é realizado no Google Colab e a aplicação é executada pelo Streamlit Community Cloud, que instala automaticamente as dependências declaradas em `requirements.txt`.
 
 ## Principais limitações conhecidas
 
